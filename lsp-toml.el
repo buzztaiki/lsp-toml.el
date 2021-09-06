@@ -25,6 +25,7 @@
 ;;; Code:
 
 (require 'lsp-mode)
+(require 'ht)
 
 (defgroup lsp-toml nil
   "LSP support for TOML, using taplo-lsp."
