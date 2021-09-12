@@ -138,9 +138,6 @@
    ("evenBetterToml.formatter.arrayTrailingComma" lsp-toml-formatter-array-trailing-comma t)
    ("evenBetterToml.formatter.alignComments" lsp-toml-formatter-align-comments t)
    ("evenBetterToml.formatter.alignEntries" lsp-toml-formatter-align-entries t)
-
-   ("evenBetterToml.taploConfigEnabled" lsp-toml-taplo-config-enabled t)
-   ("evenBetterToml.taploConfig" lsp-toml-taplo-config)
    ))
 
 
