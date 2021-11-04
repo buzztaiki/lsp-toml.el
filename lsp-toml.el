@@ -156,12 +156,23 @@
 (defun lsp-toml--initialization-options ()
   (list :configuration (ht-get (lsp-configuration-section "evenBetterToml") "evenBetterToml")))
 
+(defun lsp-toml--message-with-output (_workspace params)
+  (funcall (cl-case (ht-get params "kind")
+             ("error" 'lsp--error)
+             ("warn" 'lsp--warn)
+             ("info" 'lsp--info)
+             (t 'lsp--info))
+           "lsp-toml: %s"
+           (ht-get params "message")))
+
 (lsp-register-client
  (make-lsp-client
   :new-connection (lsp-stdio-connection (lambda () (list lsp-toml-taplo-lsp-command "run")))
   :activation-fn (lsp-activate-on "toml")
   :initialized-fn #'lsp-toml--initialized
   :initialization-options #'lsp-toml--initialization-options
+  :notification-handlers (ht
+                          ("taplo/messageWithOutput" #'lsp-toml--message-with-output))
   :server-id 'taplo-lsp
   :priority 0))
 
