@@ -26,6 +26,7 @@
 
 (require 'lsp-mode)
 (require 'ht)
+(require 'f)
 
 (defgroup lsp-toml nil
   "LSP support for TOML, using taplo-lsp."
@@ -34,6 +35,12 @@
 
 (defcustom lsp-toml-taplo-lsp-command "taplo-lsp"
   "Path to taplo-lsp command."
+  :group 'lsp-toml
+  :type 'string)
+
+(defcustom lsp-toml-cache-path (expand-file-name
+                                (locate-user-emacs-file (f-join ".cache" "lsp-toml")))
+  "Path to cache."
   :group 'lsp-toml
   :type 'string)
 
@@ -141,9 +148,10 @@
    ))
 
 
-(defun lsp-toml--update-configuration (workspace)
+(defun lsp-toml--initialized (workspace)
   (with-lsp-workspace workspace
-    (lsp--set-configuration (lsp-configuration-section "evenBetterToml"))))
+    (lsp--set-configuration (lsp-configuration-section "evenBetterToml"))
+    (lsp-notify "taplo/cachePath" `(:path ,lsp-toml-cache-path))))
 
 (defun lsp-toml--initialization-options ()
   (list :configuration (ht-get (lsp-configuration-section "evenBetterToml") "evenBetterToml")))
@@ -152,7 +160,7 @@
  (make-lsp-client
   :new-connection (lsp-stdio-connection (lambda () (list lsp-toml-taplo-lsp-command "run")))
   :activation-fn (lsp-activate-on "toml")
-  :initialized-fn #'lsp-toml--update-configuration
+  :initialized-fn #'lsp-toml--initialized
   :initialization-options #'lsp-toml--initialization-options
   :server-id 'taplo-lsp
   :priority 0))
