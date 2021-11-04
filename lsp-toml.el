@@ -150,7 +150,7 @@
 
 (lsp-register-client
  (make-lsp-client
-  :new-connection (lsp-stdio-connection (list lsp-toml-taplo-lsp-command "run"))
+  :new-connection (lsp-stdio-connection (lambda () (list lsp-toml-taplo-lsp-command "run")))
   :activation-fn (lsp-activate-on "toml")
   :initialized-fn #'lsp-toml--update-configuration
   :initialization-options #'lsp-toml--initialization-options
