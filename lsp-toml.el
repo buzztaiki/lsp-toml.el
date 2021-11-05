@@ -35,87 +35,110 @@
 
 (defcustom lsp-toml-command "taplo-lsp"
   "Path to taplo-lsp command."
-  :group 'lsp-toml
-  :type 'string)
+  :type 'string
+  :group 'lsp-toml)
 
 (defcustom lsp-toml-cache-path (expand-file-name
                                 (locate-user-emacs-file (f-join ".cache" "lsp-toml")))
   "Path to cache."
-  :group 'lsp-toml
-  :type 'string)
+  :type 'string
+  :group 'lsp-toml)
 
 (defcustom lsp-toml-taplo-config nil
   "An absolute, or workspace relative path to the Taplo configuration file."
-  :type 'string)
+  :type 'file
+  :group 'lsp-toml)
 (defcustom lsp-toml-taplo-config-enabled t
   "Whether to enable the usage of a Taplo configuration file."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 
 (defcustom lsp-toml-schema-enabled t
   "Enable completion and validation based on JSON schemas."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 (defcustom lsp-toml-schema-links nil
   "Enable editor links."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 (defcustom lsp-toml-schema-repository-enabled t
   "Whether to use schemas from the provided schema repository."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 (defcustom lsp-toml-schema-repository-url "https://taplo.tamasfe.dev/schema_index.json"
   "A HTTP(S) URL that points to a schema index."
-  :type 'string)
+  :type 'string
+  :group 'lsp-toml)
 (defcustom lsp-toml-schema-associations
   `((,(make-symbol "^(.*(/|\\\\)\\.?taplo\\.toml|\\.?taplo\\.toml)$") . "taplo://taplo.toml"))
   "Document and schema associations."
-  :type '(alist :key-type symbol :value-type string))
+  :type '(alist :key-type symbol :value-type string)
+  :group 'lsp-toml)
 
 (defcustom lsp-toml-formatter-align-entries nil
   "Align consecutive entries vertically."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 (defcustom lsp-toml-formatter-align-comments t
   "Align comments vertically after entries and array values."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 (defcustom lsp-toml-formatter-array-trailing-comma t
   "Append trailing commas for multi-line arrays."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 (defcustom lsp-toml-formatter-array-auto-expand t
   "Expand arrays to multiple lines that exceed the maximum column width."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 (defcustom lsp-toml-formatter-array-auto-collapse t
   "Collapse arrays that don't exceed the maximum column width and don't contain comments."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 (defcustom lsp-toml-formatter-compact-arrays t
   "Omit white space padding from single-line arrays."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 (defcustom lsp-toml-formatter-compact-inline-tables nil
   "Omit white space padding from the start and end of inline tables."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 (defcustom lsp-toml-formatter-compact-entries nil
   "Omit white space padding around `=` for entries."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 (defcustom lsp-toml-formatter-column-width 80
   "Maximum column width in characters, affects array expansion and collapse, this doesn't take whitespace into account."
-  :type 'number)
+  :type 'number
+  :group 'lsp-toml)
 (defcustom lsp-toml-formatter-indent-tables nil
   "Indent based on tables and arrays of tables and their subtables, subtables out of order are not indented."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 (defcustom lsp-toml-formatter-indent-entries nil
   "Indent entries under tables."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 (defcustom lsp-toml-formatter-indent-string nil
   "The substring that is used for indentation, should be tabs or spaces, but technically can be anything.  Uses the IDE setting if not set."
-  :type '(repeat string))
+  :type '(repeat string)
+  :group 'lsp-toml)
 (defcustom lsp-toml-formatter-reorder-keys nil
   "Alphabetically reorder keys that are not separated by empty lines."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 (defcustom lsp-toml-formatter-allowed-blank-lines 2
   "Maximum amount of allowed consecutive blank lines.  This does not affect the whitespace at the end of the document, as it is always stripped."
-  :type 'number)
+  :type 'number
+  :group 'lsp-toml)
 (defcustom lsp-toml-formatter-trailing-newline t
   "Add trailing newline at the end of the file if not present."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 (defcustom lsp-toml-formatter-crlf nil
   "Use CRLF for line endings."
-  :type 'boolean)
+  :type 'boolean
+  :group 'lsp-toml)
 
 
 (lsp-register-custom-settings
